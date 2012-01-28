@@ -1,132 +1,185 @@
 @charset "utf-8";
-@IMPORT url('fonts.css');
+@import url(http://fonts.googleapis.com/css?family=Asap);
 
 html {
-	padding: 15px;
-	background: url('images/background.png');
-}
-
-img {
-	display: block;
-	border: 1px solid #602000;
-	margin: 15px auto;
+    background: url('/images/bg.png');
+    font-family: 'Asap', sans-serif;
 }
 
 body {
-	max-width: 900px;
-	margin: 0px auto;
-	border: 1px solid #666;
-	font-family: 'DroidSansRegular';
-	background: url('images/content-background.png');
-}
-
-h1, h2, h3, .subtitle, label {
-	color: #661613;
+    margin: 0 0;
 }
 
 a {
-	color: #602000;
-	font-weight: bold;
+    color: #602000;
+    font-weight: bold;
 }
 
-.nav {
-	margin: 15px 20px;
-	display: block;
+#content img {
+    display: block;
+    max-width: 660px;
+    border: 1px solid #602000;
+    margin: 15px auto;
 }
 
-.subtitle {
-	font-size: 25px;
-	font-style: italic;
+.validicon {
+    display: block;
+    position: relative;
+    float: right;
+    top: 25px;
+    margin-left: 15px;
 }
 
-body > .content {
-	padding: 10px 20px;
-	background: url('images/watermark.png') top right no-repeat;
+nav {
+    margin-top: 5px;
+    height: 47px;
+    padding: 1px 0px 3px 0px;
+    text-align: center;
+    background: url('/images/menubar-main.png') center top repeat-x;
 }
 
-body .content > header {
-	display: block;
-	padding: 0 0 20px 0;
-	border-bottom: 1px solid #602000;
+nav > a {
+    font-weight: normal;
+    display: inline-block;
+    width: 161px;
+    height: 47px;
+    background: url('/images/button-bg.png');
+    color: #ECD7AC;
+    text-decoration: none;
+    text-align: center;
+    line-height: 3.0em;
 }
 
-body .content > footer {
-	margin-top: 20px;
-	border-top: 1px solid #602000;
-	display: block;
-	padding: 20px 0;
-	text-align: center;
-	font-size: 10px;
+header {
+    display: block;
+    width: 700px;
+    height: 22px;
+    padding: 18px 35px 18px 36px;
+    background: url('/images/firstheading.png') center top no-repeat;
+    margin: 15px auto 0px auto;
+    z-index: 3;
+    position: relative;
+}
+
+div.wrapper {
+    margin: 0px auto;
+    padding: 40px 10px;
+    width: 671px;
+    height: auto;
+    z-index: 5;
+    background: url('/images/contentbg.png') center top repeat-y;
+}
+
+section#content {
+    display: block;
+    position: relative;
+    width: 700px;
+    margin: -35px auto 0px auto;
+    padding: 0px 35px 0px 36px;
+    background: url('/images/paperbg.png') center top repeat-y;
+    z-index: 1;
+}
+
+footer {
+    display: block;
+    font-size: 0.7em;
+    width: 700px;
+    height: 30px;
+    padding: 5px 35px 0px 36px;
+    background: url('/images/paperbottom.png') center top no-repeat;
+    display: block;
+    margin: 0px auto 50px auto;
+}
+
+footer > .copyright {
+    display: block;
+    margin: 0px auto;    
+    text-align: center;
+}
+
+h1, h2, h3, .subtitle, label {
+    color: #661613;
+}
+
+h1 {
+    margin-top: 1px;
+    font-size: 1.4em;    
 }
 
 h2 {
-	font-weight: bold;
-	font-size: 25px;
-	font-family: 'DroidSerifRegular';
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+span.subtitle {
+    display: block;
+    font-size: 1.2em;
+    font-style: italic;
+    text-align: center;    
 }
 
 dt {
-	font-weight: bold;
-	font-family: 'DroidSerifRegular';
+    font-weight: bold;
 }
 
 blockquote {
-	padding-left: 15px;
-	padding-right: 25px;
-	text-align: justify;
-	border-left: 1px solid #ccc;
-	font-style: italic;
+    padding-left: 15px;
+    padding-right: 25px;
+    text-align: justify;
+    border-left: 1px solid #ccc;
+    font-style: italic;
 }
 
 header > p {
-	margin: 5px 280px 15px 20px;
+    margin: 5px 280px 15px 20px;
 }
 
 article p, article dt, article ul {
-	text-align: justify;
-	margin: 5px 10px 15px 35px;
+    text-align: justify;
+    margin: 5px 10px 15px 35px;
 }
 
 article li {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 form {
-	width: 600px;
-	margin: 10px auto;
+    width: 600px;
+    margin: 10px auto;
 }
 
 form label {
-	display: block;
-	float: left;
-	width: 150px;
-	height: 24px;
-	padding: 0px;
-	margin: 2px;
+    display: block;
+    float: left;
+    width: 150px;
+    height: 24px;
+    padding: 0px;
+    margin: 2px;
 }
 
 form input[type=text], form select, form textarea {
-	display: block;
-	height: 20px;
-	padding: 2px;
-	margin: 2px;
-	border: 1px solid #661613;
+    display: block;
+    height: 20px;
+    padding: 2px;
+    margin: 2px;
+    border: 1px solid #661613;
 }
 
 form textarea {
-	width: 400px;
-	height: 300px;
+    width: 400px;
+    height: 300px;
 }
 
 form select {
-	height: 26px;
+    height: 26px;
 }
 
 form input[type=submit] {
-	margin-left: 154px;
-	padding: 4px;
+    margin-left: 154px;
+    padding: 4px;
 }
 
 ul, menu {
-	list-style-type: square;
+    list-style-type: square;
 }

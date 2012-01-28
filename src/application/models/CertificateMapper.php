@@ -2,7 +2,6 @@
 
 class Application_Model_CertificateMapper
 {
-
     private $_dbTable;
     
     public function setDbTable($dbTable = 'Application_Model_DbTable_Certificates')
@@ -43,6 +42,5 @@ class Application_Model_CertificateMapper
         }
         return $data;
     }
-
 }
 

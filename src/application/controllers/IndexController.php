@@ -2,18 +2,13 @@
 
 class IndexController extends Zend_Controller_Action
 {
-
-    public function init()
+    public function preDispatch()
     {
-        /* Initialize action controller here */
-        $this->view->headTitle('Tribal Wars NPO-Manifest (draft)');
+        $this->_forward('index', 'registration');
     }
 
     public function indexAction()
     {
-        // action body
     }
-
-
 }
 

@@ -1,20 +1,16 @@
-    <header>
-      <h1>Het Tribal Wars <abbr title="Non-Premium-Optimized">NPO</abbr>-Manifest (draft)</h1>
-      <span class="subtitle">Omdat skills onbetaalbaar zijn</span>
-<a class="nav" href="/alt/">Alternatieven die volgens ons niet zullen slagen</a>
+    <span class="subtitle">Omdat skills onbetaalbaar zijn</span>
 
-      <ul>
-        <li><a href="#chap0">Waarvoor staat NPO?</a></li>
-        <li><a href="#chap1">De noodzaak van het NPO-manifest</a></li>
-        <li><a href="#chap2">Hoe wil NPO-beweging zijn doel nastreven?</a></li>
-        <li><a href="#chap3">Q&amp;A</a></li>
-        <li><a href="#chap4">Hoe kan ik mijn bijdrage leveren?</a></li>
-        <li><a href="#chap5">Sollicitatie</a></li>
-        <li><a href="#chap6">Contacteer ons</a></li>
-      </ul>
-    </header>
+    <ul>
+      <li><a href="#chap0">Waarvoor staat NPO?</a></li>
+      <li><a href="#chap1">De noodzaak van het NPO-manifest</a></li>
+      <li><a href="#chap2">Hoe wil NPO-beweging zijn doel nastreven?</a></li>
+      <li><a href="#chap3">Q&amp;A</a></li>
+      <li><a href="#chap4">Hoe kan ik mijn bijdrage leveren?</a></li>
+      <li><a href="#chap5">Sollicitatie</a></li>
+      <li><a href="#chap6">Contacteer ons</a></li>
+    </ul>
 
-    <img src="images/cartoon.png" alt="Cartoon">
+    <img src="/images/cartoon.png" alt="Cartoon">
 
     <article>
       <h2><a id="chap0"></a>Waarvoor staat NPO?</h2>
@@ -71,7 +67,7 @@
       </dl>
     </article>
 
-    <img src="images/cartoon2.png" alt="Cartoon">
+    <img src="/images/cartoon2.png" alt="Cartoon">
 
     <article>
       <h2><a id="chap4"></a>Hoe kan ik mijn bijdrage leveren?</h2>
@@ -100,8 +96,8 @@
 
       <p>De informatie in de sollicitatie wordt enkel voor interne communicatie gebruikt en wordt dus niet meegedeeld aan derden.</p>
 
-
-      <form action="http://dennisdegryse.be:2012/apply.php" method="post">
+      <?php echo $this->form ?>
+      <!--form action="<?=  ?>/apply.php" method="post">
         <label for="inp_player">Spelernaam:</label><input type="text" id="inp_player" name="player" value="">
         <label for="inp_email">E-mailadres:</label><input type="text" id="inp_email" name="email" value="">
         <label for="inp_name">Volledige naam:</label><input type="text" id="inp_name" name="name" value="">
@@ -109,7 +105,7 @@
         <label for="inp_letter">Solicitatie:</label><textarea id="inp_letter" name="letter"></textarea>
 
         <input type="submit" value="Verstuur">
-      </form>
+      </form-->
     </article>
 
     <article>

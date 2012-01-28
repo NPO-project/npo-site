@@ -1,15 +1,33 @@
 <!DOCTYPE html>
-<html lang="nl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <?php echo $this->headTitle() ?>
+<html lang="nl">
+  <head>
+    <title>Tribal Wars NPO-Manifest <?php echo $this->headTitle() ?></title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/style.css">
-</head>
-  <body><div class="content">
-      <?php echo $this->layout()->content; ?>
+  </head>
+  <body>
+    <nav id="menu">
+      <a href="/">Home</a>
+      <a href="/alternatives">Alternatieven</a>
+      <a href="/ranking">Ranglijst</a>
+      <a href="/request">Aanvragen</a>
+    </nav>
+    <header>
+      <h1>Tribal Wars NPO-Manifest</h1>
+    </header>
+    <section id="content">
+      <div class="wrapper">
+        <?php echo $this->layout()->content; ?>
+      </div>
+    </section>
     <footer>
-      <em>Tribal Wars</em> en <em>InnoGames</em> vallen onder copyright van InnoGames GmbH.
+      <span class="copyright"><em>Tribal Wars</em> en <em>InnoGames</em> vallen onder copyright van InnoGames GmbH.</span>
+      <a class="validicon" href="http://jigsaw.w3.org/css-validator/validator?uri=referer">
+        <img alt="Valid CSS" src="/images/w3cvalidcss.png">
+      </a>
+      <a class="validicon" href="http://validator.w3.org/check?uri=referer">
+        <img alt="Valid HTML5" src="/images/w3cvalidhtml5.png">
+      </a>
     </footer>
-    </div>
-  
-
-</body></html>
+  </body>
+</html>
