@@ -1,2 +1,2 @@
 #!/bin/sh
-sh setup-zend.sh
+sh tests/travis/setup-zend.sh
