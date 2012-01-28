@@ -1,3 +1,4 @@
 #!/bin/sh
-pyrus install http://zend.googlecode.com/svn/tags/Zend/Zend-1.11.9.tgz
+pyrus channel-discover zend.googlecode.com/svn
+pyrus install zend/zend
 phpenv rehash
