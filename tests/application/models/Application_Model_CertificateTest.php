@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/../../../application/models/Certificate.php';
+require_once dirname(__FILE__) . '/../../../src/application/models/Certificate.php';
 
 /**
  * Test class for Application_Model_Certificate.
