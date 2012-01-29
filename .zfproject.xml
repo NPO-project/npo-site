@@ -21,6 +21,9 @@
       </layoutsDirectory>
       <modelsDirectory>
         <modelFile modelName="Certificate"/>
+        <dbTableDirectory>
+          <dbTableFile dbTableName="Certificates"/>
+        </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
