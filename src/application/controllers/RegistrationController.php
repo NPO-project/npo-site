@@ -137,7 +137,7 @@ class RegistrationController extends Zend_Controller_Action
     public function getRegistrations()
     {
         if (!$this->_registrations)
-            $this->_registrations = new Application_Models_RegistrationMapper();
+            $this->_registrations = new Application_Model_RegistrationMapper();
 
         return $this->_registrations;
     }
