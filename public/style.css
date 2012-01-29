@@ -1,0 +1,132 @@
+@charset "utf-8";
+@IMPORT url('fonts.css');
+
+html {
+	padding: 15px;
+	background: url('images/background.png');
+}
+
+img {
+	display: block;
+	border: 1px solid #602000;
+	margin: 15px auto;
+}
+
+body {
+	max-width: 900px;
+	margin: 0px auto;
+	border: 1px solid #666;
+	font-family: 'DroidSansRegular';
+	background: url('images/content-background.png');
+}
+
+h1, h2, h3, .subtitle, label {
+	color: #661613;
+}
+
+a {
+	color: #602000;
+	font-weight: bold;
+}
+
+.nav {
+	margin: 15px 20px;
+	display: block;
+}
+
+.subtitle {
+	font-size: 25px;
+	font-style: italic;
+}
+
+body > .content {
+	padding: 10px 20px;
+	background: url('images/watermark.png') top right no-repeat;
+}
+
+body .content > header {
+	display: block;
+	padding: 0 0 20px 0;
+	border-bottom: 1px solid #602000;
+}
+
+body .content > footer {
+	margin-top: 20px;
+	border-top: 1px solid #602000;
+	display: block;
+	padding: 20px 0;
+	text-align: center;
+	font-size: 10px;
+}
+
+h2 {
+	font-weight: bold;
+	font-size: 25px;
+	font-family: 'DroidSerifRegular';
+}
+
+dt {
+	font-weight: bold;
+	font-family: 'DroidSerifRegular';
+}
+
+blockquote {
+	padding-left: 15px;
+	padding-right: 25px;
+	text-align: justify;
+	border-left: 1px solid #ccc;
+	font-style: italic;
+}
+
+header > p {
+	margin: 5px 280px 15px 20px;
+}
+
+article p, article dt, article ul {
+	text-align: justify;
+	margin: 5px 10px 15px 35px;
+}
+
+article li {
+	margin-bottom: 10px;
+}
+
+form {
+	width: 600px;
+	margin: 10px auto;
+}
+
+form label {
+	display: block;
+	float: left;
+	width: 150px;
+	height: 24px;
+	padding: 0px;
+	margin: 2px;
+}
+
+form input[type=text], form select, form textarea {
+	display: block;
+	height: 20px;
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #661613;
+}
+
+form textarea {
+	width: 400px;
+	height: 300px;
+}
+
+form select {
+	height: 26px;
+}
+
+form input[type=submit] {
+	margin-left: 154px;
+	padding: 4px;
+}
+
+ul, menu {
+	list-style-type: square;
+}
