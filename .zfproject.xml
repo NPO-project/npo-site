@@ -24,6 +24,7 @@
         <dbTableDirectory>
           <dbTableFile dbTableName="Certificates"/>
         </dbTableDirectory>
+        <modelFile modelName="CertificateMapper"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
