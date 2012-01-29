@@ -5,7 +5,7 @@ class Application_Model_RegistrationMapper
 {
     private $_dbTable;
  
-    public function list()
+    public function listAll()
     {
         return $this->fetchAll();
     }

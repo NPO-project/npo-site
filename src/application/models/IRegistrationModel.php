@@ -28,5 +28,5 @@ interface Application_Models_IRegistrationModel
      *
      * @return array
      */
-    public function list();
+    public function listAll();
 }
