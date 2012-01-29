@@ -46,11 +46,17 @@ class RegistrationController extends Zend_Controller_Action
             $this->_form->addElements(
                 array(
                     new Zend_Form_Element_Text(
-                        'player', array(
+                        'playerName', array(
                             'required' => true,
                             'label' => 'Spelernaam:',
                             'filters' => array('StringTrim'),
-                            'validators' => array(),
+                            'validators' => array(
+                                array(
+                                    'StringLength',
+                                    false,
+                                    array(3, 50)
+                                )
+                            ),
                             'decorators' => array(
                                 'Errors',
                                 'ViewHelper',
@@ -63,6 +69,11 @@ class RegistrationController extends Zend_Controller_Action
                             'label' => 'E-mailadres:',
                             'filters' => array('StringTrim'),
                             'validators' => array(
+                                array(
+                                    'StringLength',
+                                    false,
+                                    array(3, 100)
+                                ),
                                 array(
                                     'Regex',
                                     false,
@@ -81,7 +92,13 @@ class RegistrationController extends Zend_Controller_Action
                             'required' => true,
                             'label' => 'Volledige naam:',
                             'filters' => array('StringTrim'),
-                            'validators' => array(),
+                            'validators' => array(
+                                array(
+                                    'StringLength',
+                                    false,
+                                    array(3, 100)
+                                ),
+                            ),
                             'decorators' => array(
                                 'Errors',
                                 'ViewHelper',
@@ -113,7 +130,13 @@ class RegistrationController extends Zend_Controller_Action
                             'required' => true,
                             'label' => 'Sollicitatie:',
                             'filters' => array(),
-                            'validators' => array(),
+                            'validators' => array(
+                                array(
+                                    'StringLength',
+                                    false,
+                                    array(3, 1000)
+                                ),
+                            ),
                             'decorators' => array(
                                 'Errors',
                                 'ViewHelper',

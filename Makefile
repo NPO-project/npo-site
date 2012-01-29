@@ -6,7 +6,8 @@ BUILD_DIR = build
 PREFIX = /var/www/npo-site
 DIST_DIR = $(PREFIX)
 
-DB_PREFIX = $(TW_SERVER)_$(TW_WORLD)_
+
+DB_WORLDPREFIX = $(TW_SERVER)_$(TW_WORLD)_
 
 conf: checkconf buildconf
 install: check buildapp injectzf installapp 
@@ -35,7 +36,7 @@ buildconf:
 buildapp:
 	@@echo 'Building NPO-site...'
 	@@cp -R src/* $(BUILD_DIR)/out/
-	@@find $(BUILD_DIR)/out/ -name "*.*" -exec sed -i 's/{DB_PREFIX}/$(DB_PREFIX)/g;s/{DB_NAME}/$(DB_NAME)/g;s/{DB_USER}/$(DB_USER)/g;s/{DB_PASS}/$(DB_PASS)/g;s/{DB_NAME}/$(DB_NAME)/g' '{}' \; 
+	@@find $(BUILD_DIR)/out/ -name "*.*" -exec sed -i 's/{DB_PREFIX}/$(DB_PREFIX)/g;s/{DB_NAME}/$(DB_NAME)/g;s/{DB_USER}/$(DB_USER)/g;s/{DB_PASS}/$(DB_PASS)/g;s/{DB_NAME}/$(DB_NAME)/g;s/{DB_WORLDPREFIX}/$(DB_WORLDPREFIX)/g' '{}' \; 
 
 injectzf: $(BUILD_DIR)/dl/ZendFramework-1.11.11/bin/zf.sh
 	@@echo 'Injecting Zend Framework Library...'

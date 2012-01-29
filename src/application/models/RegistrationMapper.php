@@ -12,7 +12,7 @@ class Application_Model_RegistrationMapper
 
     public function save($registration)
     {
-        if ($registration->id === null)
+        if ($registration->getId() === null)
             $this->insert($registration);
         else
             $this->update($registration);
@@ -78,12 +78,11 @@ class Application_Model_RegistrationMapper
     public function create($data) 
     {
         $registration = new Application_Model_Registration();
-        $registration->setDate($data->date)
-            ->setPlayerName($data->playerName)
-            ->setEmail($data->email)
-            ->setName($data->name)
-            ->setFunction($data->function)
-            ->setLetter($data->letter);
+        $registration->setPlayerName($data['playerName'])
+            ->setEmail($data['email'])
+            ->setName($data['name'])
+            ->setFunction($data['function'])
+            ->setLetter($data['letter']);
 
         return $registration;
     }
