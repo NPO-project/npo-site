@@ -25,7 +25,8 @@ ifeq (, $(and $(TW_WORLD),$(TW_SERVER),$(HTTPD_USER),$(ENV)))
 	@@echo 'incomplete config.mk' >&2 
 	@@false
 endif
-	@@mkdir -p $(BUILD_DIR)/{dl,out}
+	@@mkdir -p $(BUILD_DIR)/dl
+	@@mkdir -p $(BUILD_DIR)/out
 
 buildconf:
 	@@cp -R httpd/* $(BUILD_DIR)/httpd/
