@@ -1,5 +1,5 @@
 <?php
-interface Application_Models_IRegistrationModel
+interface Application_Model_IRegistrationModel
 {
     /**
      * Creates a Registration from raw data
