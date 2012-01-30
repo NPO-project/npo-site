@@ -2,3 +2,4 @@
 /src/library/Zend/
 /build/
 /config.mk.bak
+/setup.sh

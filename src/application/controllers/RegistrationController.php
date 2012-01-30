@@ -12,157 +12,37 @@ class RegistrationController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->view->form = $this->getForm();
+        $form = new \Npo\Form\Registration('\registration\register');
+        $view = 'index';
 
-        return $this->render('index');
+        $this->view->form = $form;
+
+        return $this->render($view);
     }
 
     public function registerAction()
     {
-        if ($this->getRequest()->isPost()) {
+        $model = new \Npo\Model\Registrations;
+        $form = new \Npo\Form\Registration('\registration\register');
+        $view = 'verification';
+
+        if (!$this->getRequest()->isPost())
+            return $this->_forward('index');
+
+        try
+        {
             $data = $this->getRequest()->getPost();
+            $registration = $form->createRegistration($data);
 
-            if ($this->getForm()->isValid($data)) {
-                $registration = $this->getRegistrations()->create($data);
-                $this->getRegistrations()->save($registration);
-
-                return $this->render('verification');
-            }
+            $model->save($registration);
+        } 
+        catch (Zend_Validate_Exception $e)
+        {
+            $this->view->form = $form;
+            $view = 'index';
         }
 
-        $this->view->form = $this->getForm();
-
-        return $this->render('index');
-    }
-
-    public function getForm()
-    {
-        if (!$this->_form) {
-            $this->_form = new Zend_Form();
-
-            $this->_form->setDecorators(array('FormElements', 'Form'));
-            $this->_form->setAction('/registration/register');
-            $this->_form->setMethod('post');
-            $this->_form->addElements(
-                array(
-                    new Zend_Form_Element_Text(
-                        'playerName', array(
-                            'required' => true,
-                            'label' => 'Spelernaam:',
-                            'filters' => array('StringTrim'),
-                            'validators' => array(
-                                array(
-                                    'StringLength',
-                                    false,
-                                    array(3, 50)
-                                )
-                            ),
-                            'decorators' => array(
-                                'Errors',
-                                'ViewHelper',
-                                array('Label'))
-                        )
-                    ),            
-                    new Zend_Form_Element_Text(
-                        'email', array(
-                            'required' => true,
-                            'label' => 'E-mailadres:',
-                            'filters' => array('StringTrim'),
-                            'validators' => array(
-                                array(
-                                    'StringLength',
-                                    false,
-                                    array(3, 100)
-                                ),
-                                array(
-                                    'Regex',
-                                    false,
-                                    array('/^\S+\@\S+\.\S+$/')
-                                )
-                            ),
-                            'decorators' => array(
-                                'Errors',
-                                'ViewHelper',
-                                array('Label')
-                            )
-                        )
-                    ),
-                    new Zend_Form_Element_Text(
-                        'name', array(
-                            'required' => true,
-                            'label' => 'Volledige naam:',
-                            'filters' => array('StringTrim'),
-                            'validators' => array(
-                                array(
-                                    'StringLength',
-                                    false,
-                                    array(3, 100)
-                                ),
-                            ),
-                            'decorators' => array(
-                                'Errors',
-                                'ViewHelper',
-                                array('Label')
-                            )
-                        )
-                    ),
-                    new Zend_Form_Element_Select(
-                        'function', array(
-                            'required' => true,
-                            'label' => 'Functie:',
-                            'filters' => array(),
-                            'validators' => array(),
-                            'multiOptions' => array(
-                                'face' => 'Gezicht',
-                                'programmer' => 'Programmeur',
-                                'ambassador' => 'Ambassadeur',
-                                'marketeer' => 'Marketeer',
-                                'social' => 'Social Media Manager'),
-                            'decorators' => array(
-                                'Errors', 
-                                'ViewHelper', 
-                                array('Label')
-                            )
-                        )
-                    ),            
-                    new Zend_Form_Element_Textarea(
-                        'letter', array(
-                            'required' => true,
-                            'label' => 'Sollicitatie:',
-                            'filters' => array(),
-                            'validators' => array(
-                                array(
-                                    'StringLength',
-                                    false,
-                                    array(3, 1000)
-                                ),
-                            ),
-                            'decorators' => array(
-                                'Errors',
-                                'ViewHelper',
-                                array('Label')
-                            )
-                        )
-                    ),
-                    new Zend_Form_Element_Submit(
-                        'submit', array(
-                            'label' => 'Versturen',
-                            'decorators' => array('ViewHelper')
-                        )
-                    )
-                )
-            );
-        }
-
-        return $this->_form;
-    }
-
-    public function getRegistrations()
-    {
-        if (!$this->_registrations)
-            $this->_registrations = new Application_Model_RegistrationMapper();
-
-        return $this->_registrations;
+        return $this->render($view);
     }
 }
 
