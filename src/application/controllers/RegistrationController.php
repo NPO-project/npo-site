@@ -7,7 +7,7 @@ class RegistrationController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->view->headTitle('');
+        $this->view->headTitle('Tribal Wars NPO-Manifest');
     }
 
     public function indexAction()
