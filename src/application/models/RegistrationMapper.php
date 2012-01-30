@@ -1,6 +1,7 @@
 <?php
 
-class Application_Model_RegistrationMapper implements Application_Model_IRegistrationModel
+class Application_Model_RegistrationMapper
+    implements Application_Model_IRegistrationModel
 {
     private $_dbTable;
  
@@ -87,7 +88,8 @@ class Application_Model_RegistrationMapper implements Application_Model_IRegistr
         return $registration;
     }
 
-    private function _registrationToRow($registration) {
+    private function _registrationToRow($registration)
+    {
         return array(
             'id' => $registration->getId(),
             'date' => $registration->getDate(),

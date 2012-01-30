@@ -4,7 +4,9 @@ class Application_Model_CertificateMapper
 {
     private $_dbTable;
     
-    public function setDbTable($dbTable = 'Application_Model_DbTable_Certificates')
+    public function setDbTable(
+        $dbTable = 'Application_Model_DbTable_Certificates'
+    )
     {
         if (is_string($dbTable)) {
             $this->_dbTable = new $dbTable;
