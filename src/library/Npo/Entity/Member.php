@@ -14,7 +14,6 @@ use Doctrine\ORM\Mapping\SequenceGenerator;
  * @Entity
  */
 class Member
-    extends EntityAbstract
 {
     /**
      * @Id

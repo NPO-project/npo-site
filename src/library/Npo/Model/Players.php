@@ -37,6 +37,42 @@ class Players
         return $query->getResult();
     }
 
+    public function migrate($url)
+    {
+        $em = $this->getEntityManager();
+        $data = gzopen($url, 'r');
+
+        $em->getConnection()->beginTransaction();
+
+        try
+        {
+            while(!gzeof($data))
+            {
+                $player = new \Npo\Entity\Player;
+                list($id, $name, $ally, $villages, $points, $rank) = explode(',', gzgets($data, 1024));
+
+                $player->id = $id;
+                $player->name = $name;
+                $player->points = $points;
+                $player->rank = $rank;
+
+                $em->persist($player);
+            }
+
+            $em->flush();
+            $em->getConnection()->commit();
+        }
+        catch (Exception $e)
+        {
+            $em->getConnection()->rollback();
+            $em->close();
+
+            throw $e;
+        }
+
+        return array();
+    }
+
     public function listRanking($page = 1, $page_size)
     {
         $em = $this->getEntityManager();

@@ -15,7 +15,6 @@ use Doctrine\ORM\Mapping\SequenceGenerator;
  * @Entity
  */
 class Certificate
-    extends EntityAbstract
 {
     /**
      * @Id

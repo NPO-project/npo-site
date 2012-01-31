@@ -9,11 +9,10 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Id;
 
 /**
- * @Table(name="{DB_WORLDPREFIX}players")
+ * @Table(name="{DB_PREFIX}players")
  * @Entity
  */
 class Player
-    extends EntityAbstract
 {
     /**
      * @Id

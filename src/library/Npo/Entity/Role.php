@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping\Id;
  * @Entity
  */
 class Role
-    extends EntityAbstract
 {
     /**
      * @Id

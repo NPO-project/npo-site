@@ -27,7 +27,7 @@ DIST_DIR = $(PREFIX)
 # --------
 ESC_DIST_DIR = `echo '$(DIST_DIR)' | sed 's/\\//\\\\\\//g'`
 SQLEXEC = export PGPASSWORD=$(DB_PASS); psql -q --username $(DB_USER) -f
-SQLBUILD = sed -i 's/{DB_NAME}/$(DB_NAME)/g;s/{DB_PREFIX}/$(DB_PREFIX)_/g'
+SQLBUILD = sed -i 's/{DB_NAME}/$(DB_NAME)/g;s/{DB_PREFIX}/$(DB_PREFIX)/g'
 CONFBUILD = sed -i "s/{ENV}/$(ENV)/g;s/{SERVER_ADMIN}/$(SERVER_ADMIN)/g;s/{SERVER_NAME}/$(SERVER_NAME)/g;s/{DIST_DIR}/$(ESC_DIST_DIR)/g"
 PHPBUILD = sed -i 's/{DB_PREFIX}/$(DB_PREFIX)/g;s/{DB_NAME}/$(DB_NAME)/g;s/{DB_USER}/$(DB_USER)/g;s/{DB_PASS}/$(DB_PASS)/g;s/{DB_NAME}/$(DB_NAME)/g'
 
