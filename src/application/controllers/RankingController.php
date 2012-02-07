@@ -2,6 +2,7 @@
 
 class RankingController extends Zend_Controller_Action
 {
+    const PAGE_SIZE = 50;
 
     public function init()
     {
@@ -12,8 +13,15 @@ class RankingController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        $this->_forward('index');
     }
 
+    public function listAction()
+    {
+        $model = $this->_helper->model('players');
+        $page = $this->_getParam('page', 1);
 
+        $this->view->players = $model->listRanking($page, self::PAGE_SIZE);
+    }
 }
 

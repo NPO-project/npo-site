@@ -7,20 +7,28 @@ class Registrations
     public function save($registration)
     {
         $em = $this->getEntityManager();
-        $em->getConnection()->beginTransaction();
 
-        try
-        {
-            $em->persist($registration);
-            $em->flush();
-            $em->getConnection()->commit();
-        }
-        catch (Exception $e)
-        {
-            $em->getConnection()->rollback();
-            $em->close();
+        $em->persist($registration);
+        $em->flush();
+    }
 
-            throw $e;
-        }
+    public function getOpenRegistrations()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+            SELECT r
+            FROM \Npo\Entity\Registration r
+            WHERE r.status = :status
+            ORDER BY r.date DESC');
+        $query->setParameter('status', 'open');
+
+        return $query->getResult();
+    }
+
+    public function get($id)
+    {
+        $em = $this->getEntityManager();
+
+        return $em->find('\Npo\Entity\Registration', $id);
     }
 }

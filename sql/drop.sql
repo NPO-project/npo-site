@@ -21,5 +21,6 @@ DROP TABLE IF EXISTS "{DB_PREFIX}members";
 DROP TABLE IF EXISTS "{DB_PREFIX}registrations";
 
 DROP TYPE IF EXISTS "member_role";
+DROP TYPE IF EXISTS "registration_type";
 DROP SEQUENCE IF EXISTS "{DB_PREFIX}members_id_seq";
 DROP SEQUENCE IF EXISTS "{DB_PREFIX}registrations_id_seq"

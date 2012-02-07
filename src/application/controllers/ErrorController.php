@@ -1,9 +1,9 @@
 <?php
 
-class ErrorController extends Zend_Controller_Action
+class ErrorController 
+    extends Zend_Controller_Action
 {
-
-    public function errorAction()
+    public function indexAction()
     {
         $errors = $this->_getParam('error_handler');
         

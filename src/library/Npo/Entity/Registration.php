@@ -14,8 +14,12 @@ use Doctrine\ORM\Mapping\SequenceGenerator;
  * @Entity
  */
 class Registration
-    extends EntityAbstract
 {
+    public function __construct()
+    {
+        $this->date = new \DateTime;
+    }
+
     /**
      * @Id
      * @GeneratedValue(strategy="SEQUENCE")
@@ -28,6 +32,11 @@ class Registration
      * @Column(name="date", type="datetime")
      */
     private $date;
+
+    /**
+     * @Column(name="status", type="text")
+     */
+    private $status = 'open';
 
     /**
      * @Column(name="player_name", type="text", length=50)

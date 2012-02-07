@@ -57,12 +57,12 @@ endif
 buildconf:
 	@@echo 'Building HTTPD configuration...'
 	@@cp -R httpd/* $(BUILD_DIR)/conf/
-	@@find $(BUILD_DIR)/conf/ -name "*.*" -exec $(CONFBUILD) '{}' \;
+	@@find $(BUILD_DIR)/conf/ -name "*.conf" -exec $(CONFBUILD) '{}' \;
 
 buildsql:
 	@@echo 'Building database metaschema...'
 	@@cp -R sql/* $(BUILD_DIR)/sql/
-	@@find $(BUILD_DIR)/sql/ -name "*.*" -exec $(SQLBUILD) '{}' \;
+	@@find $(BUILD_DIR)/sql/ -name "*.sql" -exec $(SQLBUILD) '{}' \;
 
 buildapp:
 	@@echo 'Building NPO-site...'

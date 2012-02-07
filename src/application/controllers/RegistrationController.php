@@ -22,7 +22,7 @@ class RegistrationController extends Zend_Controller_Action
 
     public function registerAction()
     {
-        $model = new \Npo\Model\Registrations;
+        $model = $this->_helper->model('Registrations');
         $form = new \Npo\Form\Registration('\registration\register');
         $view = 'verification';
 

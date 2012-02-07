@@ -9,6 +9,9 @@ SET client_min_messages TO FATAL;
 /* Create member_role type */
 CREATE TYPE member_role AS ENUM ('ambassador', 'programmer', 'manager', 'social', 'face');
 
+/* Create registration_status type */
+CREATE TYPE registration_status AS ENUM ('open', 'rejected', 'accepted');
+
 /* Create sequence for members */
 CREATE SEQUENCE {DB_PREFIX}members_id_seq;
 
@@ -24,16 +27,19 @@ CREATE TABLE "{DB_PREFIX}registrations" (
     "date" timestamp DEFAULT NOW(),
     "function" member_role NOT NULL,
     "letter" varchar(1000) NOT NULL,
+    "status" registration_status DEFAULT 'open',
     PRIMARY KEY ("id")
 );
 
 /* Create table members */
 CREATE TABLE "{DB_PREFIX}members" (
     "id" integer NOT NULL DEFAULT NEXTVAL('{DB_PREFIX}members_id_seq'),
+    "password" varchar(40) NOT NULL,
+    "email" varchar(100) NOT NULL,
     "registration_id" integer NOT NULL,
     "forum_member_id" integer NULL,
     "name" varchar(50) NOT NULL,
-    "suspended" boolean NOT NULL DEFAULT FALSE,
+    "suspended" boolean DEFAULT FALSE,
     PRIMARY KEY ("id"),
     FOREIGN KEY ("registration_id") REFERENCES "{DB_PREFIX}registrations"("id")
 );
