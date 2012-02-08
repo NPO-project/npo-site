@@ -1,2 +1,3 @@
 #!/bin/sh
-sh tests/travis/setup-zend.sh
+make
+#sh tests/travis/setup-zend.sh
