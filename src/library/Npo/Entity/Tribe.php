@@ -33,6 +33,16 @@ class Tribe
     private $tag;
 
     /**
+     * @Column(name="points", type="integer")
+     */
+    private $points;
+
+    /**
+     * @Column(name="rank", type="integer")
+     */
+    private $rank;
+
+    /**
      * @OneToMany(targetEntity="Player", mappedBy="tribe")
      */
     private $players;

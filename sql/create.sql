@@ -57,6 +57,8 @@ CREATE TABLE "{DB_PREFIX}tribes" (
 	"id" integer NOT NULL,
 	"name" varchar(24) NOT NULL,
 	"tag" varchar(6) NOT NULL,
+    "points" integer NOT NULL,
+    "rank" integer NOT NULL,
 	PRIMARY KEY ("id")
 );
 

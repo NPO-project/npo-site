@@ -39,7 +39,7 @@ abstract class RankingModelAbstract
         $offset = $rank - $rank % $page_size + 1;
         $query = $em->createQuery(sprintf('
             SELECT o
-            %s o 
+            FROM %s o 
             WHERE o.rank BETWEEN :offset AND :max 
             ORDER BY o.rank DESC', $this->_entity));
 
@@ -82,7 +82,6 @@ abstract class RankingModelAbstract
 
     public function listRanking($page = 1, $page_size)
     {
-        $em = $this->getEntityManager();
         $rank = ($page - 1) * $page_size;
 
         return $this->_listRanking($rank, $page_size);
