@@ -10,7 +10,7 @@ class AuthController
         $view = 'index';
 
         if ($ns_auth->currentMember !== null)
-            $this->_forward('index', 'index');
+            return $this->_forward('index', 'index');
 
         $this->view->form = $form;
 
@@ -25,11 +25,11 @@ class AuthController
         $request = $this->getRequest();
         $view = 'login';
 
-        if (!$request->isPost())
-            $this->_forward('index');
-
         if ($ns_auth->currentMember !== null)
-            $this->_forward('index', 'index');
+            return $this->_forward('index', 'index');
+
+        if (!$request->isPost())
+            return $this->_forward('index');
 
         try
         {
@@ -38,9 +38,10 @@ class AuthController
             if (!$form->isValid($data))
                 throw new \Zend_Validate_Exception;
 
-            $member = $model->tryLogin($data->email, $data->password);
+            $member = $model->tryLogin($data['email'], $data['password']);
 
-            $ns_auth->currentMember = $member;
+            $ns_auth->currentMember = $member->id;
+            $this->view->member = $member;
         }
         catch (\Zend_Validate_Exception $e)
         {
@@ -57,7 +58,7 @@ class AuthController
         $view = 'logout';
 
         if (!$ns_auth->currentMember)
-            $this->_forward('index');
+            return $this->_forward('index');
 
         $ns_auth->currentMember = null;
 

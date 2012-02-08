@@ -31,7 +31,7 @@ class Auth
                     )
                 ),
                 new \Zend_Form_Element_Password(
-                    'name', array(
+                    'password', array(
                         'required' => true,
                         'label' => 'Wachtwoord:',
                         'filters' => array('StringTrim'),

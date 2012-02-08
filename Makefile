@@ -66,7 +66,7 @@ buildsql:
 
 buildapp:
 	@@echo 'Building NPO-site...'
-	@@cp -R src/* $(BUILD_DIR)/www/
+	@@cp --preserve=mode -R src/* $(BUILD_DIR)/www/
 	@@find $(BUILD_DIR)/www/ -name "*.*" -exec $(PHPBUILD) '{}' \;
 
 # --------------------

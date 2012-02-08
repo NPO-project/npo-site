@@ -27,8 +27,7 @@ class Acl
     public function setPrivileges()
     {
         $this->_acl->allow('guest', null, array('list', 'read', 'index', 'register', 'create', 'login'))
-            ->allow('ambassador', null, array('add', 'delete', 'logout'))
-            ->allow('bot', null, 'migrate');
+            ->allow('ambassador', null, array('add', 'delete', 'logout', 'migrate'));
     }
 
     public function setAcl() 

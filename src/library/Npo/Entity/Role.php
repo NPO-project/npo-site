@@ -16,7 +16,7 @@ class Role
 {
     /**
      * @Id
-     * @ManyToOne(targetEntity="Member")
+     * @ManyToOne(targetEntity="Member", fetch="LAZY")
      * @JoinColumn(name="member_id", referencedColumnName="id")
      */
     private $member;

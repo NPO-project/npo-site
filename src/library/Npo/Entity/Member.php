@@ -58,7 +58,7 @@ class Member
     private $suspended = false;
 
     /**
-     * @OneToMany(targetEntity="Role", mappedBy="member", cascade={"persist"})
+     * @OneToMany(targetEntity="Role", mappedBy="member", cascade={"ALL"}, fetch="LAZY")
      */
     private $roles;
 
