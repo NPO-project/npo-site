@@ -18,4 +18,3 @@ export HTTPD_USER=apache
 export ENV=development
 
 make
-#sh tests/travis/setup-zend.sh
