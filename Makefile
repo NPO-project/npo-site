@@ -131,3 +131,9 @@ uninstallsql:
 uninstallconf:
 	@@echo 'Removing configuration...'
 	@@[ -f $(HTTPD_CONF_DIR)/$(SERVER_NAME).conf ] && rm -Rf $(HTTPD_CONF_DIR)/$(SERVER_NAME).conf || true
+
+# ----------
+# TEST RULES
+# ----------
+test: all
+	@@cd tests && phpunit --colors
