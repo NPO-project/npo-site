@@ -6,7 +6,7 @@ class AuthController
     public function indexAction()
     {
         $ns_auth = new \Zend_Session_Namespace('auth');
-        $form = new \Npo\Form\Login;
+        $form = new \Npo\Form\Auth('/auth/login');
         $view = 'index';
 
         if ($ns_auth->currentMember !== null)
@@ -20,10 +20,10 @@ class AuthController
     public function loginAction()
     {
         $ns_auth = new \Zend_Session_Namespace('auth');
+        $form = new \Npo\Form\Auth('/auth/login');
         $model = new \Npo\Model\Members;
         $request = $this->getRequest();
         $view = 'login';
-        $form = new \Npo\Form\Login;
 
         if (!$request->isPost())
             $this->_forward('index');

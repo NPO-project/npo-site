@@ -26,9 +26,9 @@ class MemberController extends Zend_Controller_Action
     private function _mailSummary($member, $password)
     {
         $mail = new \Zend_Mail;
+        $body = sprintf("Beste %s,\n\nu werd zonet aangenomen bij Tribal Wars NPO. Hierbij werd een account opgemaakt en toegevoegd aan het systeem. Om in te loggen dient u uw e-mailadres te gebruiken en het volgende wachtwoord: %s\n\nMet vriendelijke groeten,\nHet NPO-team", $member->name, $password);
         
-        $mail->setBodyText('Beste ' . $member->name . ', u werd zonet aangenomen bij Tribal Wars NPO. Hierbij werd een account opgemaakt en toegevoegd aan het systeem. Om in te loggen dient u uw e-mailadres te gebruiken en het volgende wachtwoord: ' . $password)
-            ->setFrom('dennisdegryse@gmail.com', 'Tribal Wars - NPO')
+        $mail->setBodyText($body)
             ->addTo($member->email, $member->name)
             ->setSubject('NPO - Lidmaatschap')
             ->send();
