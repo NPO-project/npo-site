@@ -29,7 +29,7 @@ ESC_DIST_DIR = `echo '$(DIST_DIR)' | sed 's/\\//\\\\\\//g'`
 SQLEXEC = export PGPASSWORD=$(DB_PASS); psql -q --username $(DB_USER) -f
 SQLBUILD = sed -i 's/{DB_NAME}/$(DB_NAME)/g;s/{DB_PREFIX}/$(DB_PREFIX)/g'
 CONFBUILD = sed -i "s/{ENV}/$(ENV)/g;s/{SERVER_ADMIN}/$(SERVER_ADMIN)/g;s/{SERVER_NAME}/$(SERVER_NAME)/g;s/{DIST_DIR}/$(ESC_DIST_DIR)/g"
-PHPBUILD = sed -i 's/{DB_PREFIX}/$(DB_PREFIX)/g;s/{DB_NAME}/$(DB_NAME)/g;s/{DB_USER}/$(DB_USER)/g;s/{DB_PASS}/$(DB_PASS)/g;s/{DB_NAME}/$(DB_NAME)/g'
+PHPBUILD = sed -i 's/{DB_PREFIX}/$(DB_PREFIX)/g;s/{DB_NAME}/$(DB_NAME)/g;s/{DB_USER}/$(DB_USER)/g;s/{DB_PASS}/$(DB_PASS)/g;s/{DB_NAME}/$(DB_NAME)/g;s/{SMTP_USER}/$(SMTP_USER)/g;s/{SMTP_PASS}/$(SMTP_PASS)/g;s/{SMTP_HOST}/$(SMTP_HOST)/g'
 
 # ----------
 # MAIN RULES
@@ -42,7 +42,7 @@ uninstall: uninstallconf uninstallsql uninstallapp
 # CHECK RULES
 # -----------
 check:
-ifeq (, $(and $(DB_NAME),$(DB_USER),$(DB_PASS),$(SERVER_NAME),$(SERVER_ADMIN),$(HTTPD_USER),$(ENV)))
+ifeq (, $(and $(DB_NAME),$(DB_USER),$(DB_PASS),$(SMTP_HOST),$(SMTP_USER),$(SMTP_PASS),$(SERVER_NAME),$(SERVER_ADMIN),$(HTTPD_USER),$(ENV)))
 	@@echo 'please set the environment variables DB_NAME, DB_PASS, SERVER_NAME, SERVER_ADMIN, HTTPD_USER and ENV' >&2 
 	@@false
 endif
@@ -121,10 +121,13 @@ installconf:
 # UNINSTALL RULES
 # ---------------
 uninstallapp:
+	@@echo 'Removing NPO-site...'
 	@@rm -Rf $(DIST_DIR)
 
 uninstallsql:
+	@@echo 'Removing database...'
 	@@$(SQLEXEC) $(BUILD_DIR)/sql/drop.sql
 
 uninstallconf:
+	@@echo 'Removing configuration...'
 	@@[ -f $(HTTPD_CONF_DIR)/$(SERVER_NAME).conf ] && rm -Rf $(HTTPD_CONF_DIR)/$(SERVER_NAME).conf || true
