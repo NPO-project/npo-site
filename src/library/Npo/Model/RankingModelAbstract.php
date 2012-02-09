@@ -4,7 +4,12 @@ namespace Npo\Model;
 abstract class RankingModelAbstract
     extends ModelAbstract 
 {
+    const CHUNK_SIZE = 200;
+    const PAGE_SIZE = 50;
+
     protected $_entity = null;
+    protected $_join = '';
+    private $_paginator;
 
     public function get($id)
     {
@@ -16,37 +21,32 @@ abstract class RankingModelAbstract
     public function save($entity_object)
     {
         $em = $this->getEntityManager();
-        $em->getConnection()->beginTransaction();
 
-        try
-        {
-            $em->persist($entity_object);
-            $em->flush();
-            $em->getConnection()->commit();
-        }
-        catch (Exception $e)
-        {
-            $em->getConnection()->rollback();
-            $em->close();
-
-            throw $e;
-        }
+        $em->persist($entity_object);
+        $em->flush();
     }
 
-    private function _listRanking($rank, $page_size)
+    public function getPaginator()
     {
         $em = $this->getEntityManager();
-        $offset = $rank - $rank % $page_size + 1;
-        $query = $em->createQuery(sprintf('
-            SELECT o
-            FROM %s o 
-            WHERE o.rank BETWEEN :offset AND :max 
-            ORDER BY o.rank DESC', $this->_entity));
 
-        $query->setParameter('offset', $offset)
-            ->setParameter('max', $offset + $page_size);
+        if (!$this->_paginator)
+        {
+            $query = $em->createQuery(sprintf('
+                SELECT o
+                FROM %s o %s
+                ORDER BY o.rank ASC', 
+                $this->_entity, $this->_join));
+            $count = $em->createQuery(sprintf('
+                SELECT COUNT(o.id)
+                FROM %s o', 
+                $this->_entity));
 
-        return $query->getResult();
+            $this->_paginator = new \Zend_Paginator(new \Npo\Paginator\Adapter\Doctrine2($query, $count));
+            $this->_paginator->setItemCountPerPage(self::PAGE_SIZE);
+        }
+
+        return $this->_paginator;
     }
 
     protected abstract function _migrateRecord($data_line);
@@ -55,15 +55,24 @@ abstract class RankingModelAbstract
     {
         $em = $this->getEntityManager();
         $data = gzopen($url, 'r');
+        $counter = 0;
 
         $em->getConnection()->beginTransaction();
 
         try
         {
+            $em->clear($this->_entity);
+ 
             while(!gzeof($data))
             {
                 $entity_object = $this->_migrateRecord(gzgets($data, 1024));
                 $em->persist($entity_object);
+
+                if ($counter++ % self::CHUNK_SIZE === 0) 
+                {
+                    $em->flush();
+                    $em->clear();
+                }
             }
 
             $em->flush();
@@ -80,18 +89,15 @@ abstract class RankingModelAbstract
         return array();
     }
 
-    public function listRanking($page = 1, $page_size)
+    public function findPage($name)
     {
-        $rank = ($page - 1) * $page_size;
-
-        return $this->_listRanking($rank, $page_size);
-    }
-
-    public function locate($name, $page_size)
-    {
+        $page = null;
         $player = $this->findByName($name);
 
-        return $this->_listRanking($player->rank, $page_size);
+        if ($player)
+            $page = $player->rank / self::PAGE_SIZE + 1;
+
+        return $page;
     }
 
     public function findByName($name) 
@@ -99,8 +105,9 @@ abstract class RankingModelAbstract
         $em = $this->getEntityManager();
         $query = $em->createQuery(sprintf('
             SELECT o 
-            FROM %s o 
-            WHERE o.name = :name', $this->_entity));
+            FROM %s o %s
+            WHERE o.name = :name', 
+            $this->_entity, $this->_join));
 
         $query->setParameter('name', $name);
         

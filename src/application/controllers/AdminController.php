@@ -1,9 +1,11 @@
 <?php
 
-class PlayerController extends Zend_Controller_Action
+class AdminController extends Zend_Controller_Action
 {
     public function migrateAction()
     {
+        set_time_limit(0); // Because this is a long operation
+
         $model_tribes = $this->_helper->model('tribes');
         $model_players = $this->_helper->model('players');
         $view = 'json';

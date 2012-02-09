@@ -1,3 +1,5 @@
-<?php foreach ($this->players as $player): ?>
-  <li><?php echo $player->name ?></li>
-<?php endforeach; ?>
+<ul>
+    <?php echo $this->partialLoop('ranking/' . $this->section . 'Item.phtml', $this->paginator); ?>
+</ul>
+
+<?php echo $this->paginator; ?>

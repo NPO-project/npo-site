@@ -9,7 +9,7 @@ class Tribes
     protected function _migrateRecord($data_line)
     {
         $em = $this->getEntityManager();
-        list($id, $name, $tag, $members, $villages, $points, $all_points, $rank) = explode(',', $data_line);
+        list($id, $name, $tag, $members, $villages, $points, $all_points, $rank) = array_map('urldecode', explode(',', $data_line));
 
         if (!$tribe = $this->get($id)) 
             $tribe = new \Npo\Entity\Tribe;

@@ -1,9 +1,7 @@
 <?php
-
 class RankingController extends Zend_Controller_Action
 {
-    const PAGE_SIZE = 50;
-    private static $_validSections = array('players', 'tribes');
+    private $_model;
 
     public function init()
     {
@@ -14,20 +12,47 @@ class RankingController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->_forward('list');
+        return $this->_forward('players');
     }
 
-    public function listAction()
+    public function playersAction()
     {
+        return $this->_showRanking('players');
+    }
+
+    public function TribesAction()
+    {
+        return $this->_showRanking('tribes');
+    }
+
+    private function _showRanking($section)
+    {
+        $view = 'list';
+        $this->_model = $this->_helper->model($section);
+        $paginator = $this->_model->getPaginator();
+
+        if (!$this->_hasParam('page') && $this->_hasParam('find'))
+            $this->_findPage();
+
         $page = $this->_getParam('page', 1);
-        $section = $this->_getParam('section', self::$_validSections[0]);
 
-        if (!in_array($section, self::$_validSections))
-            throw new Exception('Invalid Section');
+        $paginator->setCurrentPageNumber($page);
 
-        $model = $this->_helper->model($section);
+        $this->view->paginator = $paginator;
+        $this->view->section = $section;
 
-        $this->view->players = $model->listRanking($page, self::PAGE_SIZE);
+        return $this->render($view);
+    }
+
+    private function _findPage()
+    {
+        $name = $this->_getParam('find', null);
+
+        if ($name !== null)
+            $page = $this->_model->findPage($name);
+
+        if ($page)
+            $this->_setParam('page', $page);
     }
 }
 

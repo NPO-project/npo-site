@@ -46,42 +46,42 @@ CREATE TABLE "{DB_PREFIX}members" (
 
 /* Create table roles */
 CREATE TABLE "{DB_PREFIX}roles" (
-	"member_id" integer NOT NULL,
-	"role" member_role NOT NULL,
-	PRIMARY KEY ("member_id", "role"),
-	FOREIGN KEY ("member_id") REFERENCES "{DB_PREFIX}members"("id")
+    "member_id" integer NOT NULL,
+    "role" member_role NOT NULL,
+    PRIMARY KEY ("member_id", "role"),
+    FOREIGN KEY ("member_id") REFERENCES "{DB_PREFIX}members"("id")
 );
 
 /* Create table tribes */
 CREATE TABLE "{DB_PREFIX}tribes" (
-	"id" integer NOT NULL,
-	"name" varchar(24) NOT NULL,
-	"tag" varchar(6) NOT NULL,
+    "id" integer NOT NULL,
+    "name" varchar(32) NOT NULL,
+    "tag" varchar(6) NOT NULL,
     "points" integer NOT NULL,
     "rank" integer NOT NULL,
-	PRIMARY KEY ("id")
+    PRIMARY KEY ("id")
 );
 
 /* Create table players */
 CREATE TABLE "{DB_PREFIX}players" (
-	"id" integer NOT NULL,
-	"name" varchar(24) NOT NULL,
-	"tribe_id" integer NULL,
+    "id" integer NOT NULL,
+    "name" varchar(24) NOT NULL,
+    "tribe_id" integer NULL,
     "points" integer NOT NULL,
     "rank" integer NOT NULL,
-	PRIMARY KEY ("id"),
-	FOREIGN KEY ("tribe_id") REFERENCES "{DB_PREFIX}tribes"("id")
+    PRIMARY KEY ("id")
+    -- FOREIGN KEY ("tribe_id") REFERENCES "{DB_PREFIX}tribes"("id")
 );
 
 /* Create table certificates */
 CREATE TABLE "{DB_PREFIX}certificates" (
-	"player_id" integer NOT NULL,
-	"role_member_id" integer NOT NULL,
-	"role_role" member_role NOT NULL,
-	"date" timestamp NOT NULL,
-	"end_date" timestamp NOT NULL,
-	PRIMARY KEY ("player_id", "date"),
-	FOREIGN KEY ("player_id") REFERENCES "{DB_PREFIX}players"("id"),
-	FOREIGN KEY ("role_member_id", "role_role") REFERENCES "{DB_PREFIX}roles"("member_id", "role"),
-	CHECK ("role_role"='ambassador')
+    "player_id" integer NOT NULL,
+    "role_member_id" integer NOT NULL,
+    "role_role" member_role NOT NULL,
+    "date" timestamp NOT NULL,
+    "end_date" timestamp NOT NULL,
+    PRIMARY KEY ("player_id", "date"),
+    -- FOREIGN KEY ("player_id") REFERENCES "{DB_PREFIX}players"("id"),
+    FOREIGN KEY ("role_member_id", "role_role") REFERENCES "{DB_PREFIX}roles"("member_id", "role"),
+    CHECK ("role_role"='ambassador')
 );

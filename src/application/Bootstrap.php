@@ -18,6 +18,22 @@ class Bootstrap
         Zend_Controller_Action_HelperBroker::addHelper(new \Npo\Controller\Action\Helper\GeneratePassword);
     }
 
+    protected function _initPartialLoopObject()
+    {
+        $view = new Zend_View();
+        $view->partialLoop()->setObjectKey('item');
+        $view->partial()->setObjectKey('item');
+
+        $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
+        $viewRenderer->setView($view);
+    }
+
+    protected function _initPagination()
+    {
+        \Zend_View_Helper_PaginationControl::setDefaultViewPartial('paginator.phtml');
+        \Zend_Paginator::setDefaultScrollingStyle('Sliding');
+    }
+
     protected function _initAuth()
     {
         $auth = new \Zend_Session_Namespace('members');
