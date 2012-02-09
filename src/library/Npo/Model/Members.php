@@ -41,7 +41,8 @@ class Members
     public function get($id)
     {
         $em = $this->getEntityManager();
+        $member = $em->find('\Npo\Entity\Member', $id);
 
-        return $em->find('\Npo\Entity\Member', $id);
+        return $member;
     }
 }

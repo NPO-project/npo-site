@@ -1,4 +1,9 @@
-<ul>
+<ul class="submenu">
+    <li><a href="<?php echo $this->url(array('action' => 'players', 'page' => 1)) ?>">Spelers</a></li>
+    <li><a href="<?php echo $this->url(array('action' => 'tribes', 'page' => 1)) ?>">Stammen</a></li>
+</ul>
+
+<ul class="ranking">
     <?php echo $this->partialLoop('ranking/' . $this->section . 'Item.phtml', $this->paginator); ?>
 </ul>
 

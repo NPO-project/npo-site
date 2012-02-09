@@ -43,7 +43,7 @@ class Tribe
     private $rank;
 
     /**
-     * @OneToMany(targetEntity="Player", mappedBy="tribe")
+     * @OneToMany(targetEntity="Player", mappedBy="tribe", cascade="{ALL}", fetch="LAZY")
      */
     private $players;
 

@@ -14,8 +14,9 @@ abstract class RankingModelAbstract
     public function get($id)
     {
         $em = $this->getEntityManager();
+        $entityObject = $em->find($this->_entity, $id);
 
-        return $em->find($this->_entity, $id);
+        return $entityObject;
     }
 
     public function save($entity_object)
@@ -24,6 +25,17 @@ abstract class RankingModelAbstract
 
         $em->persist($entity_object);
         $em->flush();
+    }
+
+    public function clear()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(sprintf('
+            DELETE
+            FROM %s o',
+            $this->_entity));
+
+        return $query->execute();
     }
 
     public function getPaginator()
@@ -61,7 +73,7 @@ abstract class RankingModelAbstract
 
         try
         {
-            $em->clear($this->_entity);
+            $this->clear();
  
             while(!gzeof($data))
             {

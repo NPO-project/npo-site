@@ -1,3 +1,11 @@
-<li>
-    <?php echo $this->item->name; ?>
+<li class="ranking-player">
+    <span class="rank"><?php echo $this->item->rank ?>.</span>
+    <a class="link" href="http://nl26.tribalwars.nl/guest.php?screen=info_player&id=<?php echo $this->item->id ?>">
+      <?php echo $this->escape($this->item->name) ?>
+    </a>
+    <?php if ($this->item->tribe): ?>
+      <a class="tribe" href="http://nl26.tribalwars.nl/guest.php?screen=info_tribe&id=<?php echo $this->item->tribe->id ?>">
+        <?php echo $this->escape($this->item->tribe->tag) ?>
+      </a>
+    <?php endif; ?>
 </li>

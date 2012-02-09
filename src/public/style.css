@@ -13,6 +13,7 @@ body {
 a {
     color: #602000;
     font-weight: bold;
+    text-decoration: none;
 }
 
 #content img {
@@ -182,4 +183,68 @@ form input[type=submit] {
 
 ul, menu {
     list-style-type: square;
+}
+
+ul.submenu {
+    display: block;
+    text-align: center;
+    background: url('/images/smallheader.png');
+    width: 640px;
+    height: 26px;
+    padding: 5px;
+    margin: 10px auto;
+}
+
+ul.submenu li {
+    display: inline-block;
+    margin: 0px 10px;
+    padding: 5px;
+    height: 16px;
+    font-size: 0.9em;
+}
+
+ul.ranking {
+    font-size: 0.9em;
+    display: block;
+    margin: 10px;
+    padding: 5px;
+    background: bottom right url('/images/table.png') no-repeat;
+    list-style-type: none;
+    border: 1px solid #A97;
+}
+
+ul.ranking li {
+    margin: 0px;
+    padding: 3px;
+    display: block;
+    border-bottom: 1px dotted #A97;
+}
+
+ul.ranking li:last-child {
+    border-bottom: none;
+}
+
+ul.ranking > li .rank,
+ul.ranking > li .link,
+ul.ranking > li .tribe {
+    display: inline-block;
+    text-decoration: none;
+}
+
+ul.ranking > li .rank {
+    width: 50px;
+}
+
+ul.ranking > li .link {
+    width: 200px;
+}
+
+li.ranking-player .tribe {
+    width: 100px;
+}
+
+div.pagination-control {
+    text-align: center;
+    width: 500px;
+    margin: 10px auto;
 }

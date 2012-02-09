@@ -20,7 +20,7 @@ class RankingController extends Zend_Controller_Action
         return $this->_showRanking('players');
     }
 
-    public function TribesAction()
+    public function tribesAction()
     {
         return $this->_showRanking('tribes');
     }

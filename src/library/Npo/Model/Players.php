@@ -10,15 +10,18 @@ class Players
     protected function _migrateRecord($data_line)
     {
         $em = $this->getEntityManager();
+        $player = new \Npo\Entity\Player;
+        $tribe = null;
         list($id, $name, $ally, $villages, $points, $rank) = array_map('urldecode', explode(',', $data_line));
 
-        if (!$player = $this->get($id))
-            $player = new \Npo\Entity\Player;
+        if ($ally !== 0)
+            $tribe = $em->find('\Npo\Entity\Tribe', $ally);
 
         $player->id = $id;
         $player->name = $name;
         $player->points = $points;
         $player->rank = $rank;
+        $player->tribe = $tribe;
 
         return $player;
     }
