@@ -43,7 +43,8 @@ uninstall: uninstallconf uninstallsql uninstallapp
 # -----------
 check:
 ifeq (, $(and $(DB_NAME),$(DB_USER),$(DB_PASS),$(SMTP_HOST),$(SMTP_USER),$(SMTP_PASS),$(SERVER_NAME),$(SERVER_ADMIN),$(HTTPD_USER),$(ENV)))
-	@@echo 'please set the environment variables DB_NAME, DB_PASS, SERVER_NAME, SERVER_ADMIN, HTTPD_USER and ENV' >&2 
+	@@echo 'Please set the environment variables DB_NAME, DB_PASS, SERVER_NAME, SERVER_ADMIN, HTTPD_USER, ENV, SMTP_HOST, SMTP_USER and SMTP_PASS' >&2 
+	@@echo 'A example can be found on https://github.com/NPO-project/npo-site/blob/master/tests/travis/setup.sh' >&2
 	@@false
 endif
 	@@[ -d $(BUILD_DIR)/www ] && rm -Rf $(BUILD_DIR)/www/* || mkdir -p $(BUILD_DIR)/www
