@@ -27,6 +27,7 @@ class RankingController extends Zend_Controller_Action
 
     private function _showRanking($section)
     {
+        $form = new \Npo\Form\Ranking($this->getRequest()->getRequestUri());
         $view = 'list';
         $this->_model = $this->_helper->model($section);
         $paginator = $this->_model->getPaginator();
@@ -40,6 +41,7 @@ class RankingController extends Zend_Controller_Action
 
         $this->view->paginator = $paginator;
         $this->view->section = $section;
+        $this->view->form = $form;
 
         return $this->render($view);
     }
